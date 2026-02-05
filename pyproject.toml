@@ -32,8 +32,13 @@ Repository = "https://github.com/jeffhykin/open3d_jetson"
 [tool.setuptools]
 packages = ["open3d_unofficial_arm"]
 
-[tool.setuptools.package-data]
-open3d_unofficial_arm = ["wheels/*.whl"]
+# Explicitly exclude wheels directory from package
+[tool.setuptools.exclude-package-data]
+open3d_unofficial_arm = ["wheels/*"]
+
+# Wheels are downloaded from GitHub, not bundled
+# [tool.setuptools.package-data]
+# open3d_unofficial_arm = ["wheels/*.whl"]
 
 [project.scripts]
 open3d-arm-setup = "open3d_unofficial_arm.install_hook:auto_install_open3d"

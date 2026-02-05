@@ -1,3 +1,4 @@
 include README.md
 include LICENSE
-recursive-include open3d_unofficial_arm/wheels *.whl
+# Wheels are downloaded from GitHub, not bundled
+# recursive-include open3d_unofficial_arm/wheels *.whl
