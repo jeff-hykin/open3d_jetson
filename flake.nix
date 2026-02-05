@@ -46,6 +46,7 @@
                         ]))
                         pkgs.python3Packages.venvShellHook
                         pkgs.python3Packages.pip
+                        pkgs.python3Packages.twine
                         pkgs.sqlite
                         pkgs.deno
                         
