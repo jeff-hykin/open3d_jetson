@@ -12,13 +12,13 @@ This is a stop-gap package providing pre-built ARM wheels for Open3D while waiti
 pip install open3d-unofficial-arm
 ```
 
-This will automatically install the appropriate Open3D wheel for your Python version (3.10 or 3.12).
+This will automatically install the appropriate Open3D wheel for your Python version (3.10, 3.11, 3.12, or 3.13).
 
 ## Supported Platforms
 
 - **OS**: Linux (manylinux_2_35)
 - **Architecture**: ARM64 (aarch64)
-- **Python versions**: 3.10, 3.12
+- **Python versions**: 3.10, 3.11, 3.12, 3.13
 
 ## Usage
 
