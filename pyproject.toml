@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "open3d-unofficial-arm"
 version = "0.19.0"
-description = "Unofficial ARM builds of Open3D (stop-gap until official ARM support)"
+description = "Universal Open3D installer: ARM wheels + fallback to official package"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -34,3 +34,6 @@ packages = ["open3d_unofficial_arm"]
 
 [tool.setuptools.package-data]
 open3d_unofficial_arm = ["wheels/*.whl"]
+
+[project.scripts]
+open3d-arm-setup = "open3d_unofficial_arm.install_hook:auto_install_open3d"

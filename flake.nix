@@ -45,6 +45,7 @@
                             # })
                         ]))
                         pkgs.python3Packages.venvShellHook
+                        pkgs.python3Packages.pip
                         pkgs.sqlite
                         pkgs.deno
                         
@@ -128,6 +129,12 @@
                         starship = {
                             enable = true;
                             enableZshIntegration = true;
+                            settings = {
+                                character = {
+                                    success_symbol = "[∫](bold green)";
+                                    error_symbol = "[∫](bold red)";
+                                };
+                            };
                         };
                     };
                 }
