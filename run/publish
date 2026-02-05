@@ -1,0 +1,31 @@
+#!/usr/bin/env -S deno run --allow-all --no-lock
+import fs from "node:fs"
+import * as dax from "https://esm.sh/@jsr/david__dax@0.43.2/mod.ts" // see: https://github.com/dsherret/dax
+import * as path from "https://esm.sh/jsr/@std/path@1.1.2"
+import { env, aliases, $stdout, $stderr, initHelpers, iterateOver } from "https://esm.sh/gh/jeff-hykin/bash2deno@0.1.0.2/helpers.js"
+let { $, appendTo, overwrite, hasCommand, makeScope, settings, exitCodeOfLastChildProcess } = initHelpers({ dax })
+import { FileSystem, glob } from "https://deno.land/x/quickr@0.8.6/main/file_system.js"
+
+// Package is in root directory, not main/
+await $`cd ${FileSystem.thisFolder}/..`
+await $`rm -rf ./dist`
+
+// Use modern build method instead of setup.py
+await $`python -m build`
+
+// [ -d "./dist" ]
+if (fs.existsSync(`./dist`) && fs.lstatSync(`./dist`).isDirectory()) {
+    await $`stty sane 2>/dev/null`
+    var { code } = await $`twine upload ${await glob(`dist/*`)}`
+}
+if (code !== 0) {
+    Deno.exit()
+}
+import { parse } from "https://deno.land/std@0.224.0/toml/mod.ts"
+var text = await Deno.readTextFile(`${FileSystem.thisFolder}/../pyproject.toml`)
+// This package uses project.version, not tool.poetry.version
+var version = parse(text).project.version
+
+// tag it
+await $`git tag ${version}`
+await $`git push origin ${version}`
