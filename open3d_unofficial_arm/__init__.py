@@ -15,7 +15,7 @@ Post-install setup (one-time):
     open3d-arm-setup    # Ensures open3d is installed
 """
 
-__version__ = "0.19.0.post1"
+__version__ = "0.19.0.post2"
 
 # Auto-trigger installation on first import
 from .install_hook import auto_install_open3d
