@@ -1,0 +1,3 @@
+include README.md
+include LICENSE
+recursive-include open3d_unofficial_arm/wheels *.whl
